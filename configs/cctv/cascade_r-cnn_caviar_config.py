@@ -59,7 +59,7 @@ model = dict(
 
 # Modify dataset related settings
 dataset_type = 'COCODataset'
-classes = 'person'
+classes = ('person')
 data = dict(
     train=dict(
         img_prefix='configs/cctv/train/',
