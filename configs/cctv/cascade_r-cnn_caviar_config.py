@@ -3,8 +3,8 @@ _base_ = '../cascade_rcnn/cascade_rcnn_r50_fpn_1x_coco.py'
 
 # We also need to change the num_classes in head to match the dataset's annotation
 
-# background is also a class..
-number_of_classes = 2
+# We only want to find people (person class)
+number_of_classes = 1
 
 model = dict(
     roi_head=dict(
