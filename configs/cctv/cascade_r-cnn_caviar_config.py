@@ -68,15 +68,18 @@ data = dict(
     train=dict(
         img_prefix='configs/cctv/train/',
         classes=classes,
-        ann_file='configs/cctv/train/annotation_coco.json'),
+        ann_file='configs/cctv/train/annotation_coco.json',
+        img_scale=(2048, 1024)),
     val=dict(
         img_prefix='configs/cctv/val/',
         classes=classes,
-        ann_file='configs/cctv/val/annotation_coco.json'),
+        ann_file='configs/cctv/val/annotation_coco.json',
+        img_scale=(2048, 1024)),
     test=dict(
         img_prefix='configs/cctv/val/',
         classes=classes,
-        ann_file='configs/cctv/val/annotation_coco.json'))
+        ann_file='configs/cctv/val/annotation_coco.json',
+        img_scale=(2048, 1024)))
 
 # We can use the pre-trained Cascade RCNN model to obtain higher performance
 load_from = 'pretrained_models/cascade_rcnn_r50_fpn_1x_coco_20200316-3dc56deb.pth'
