@@ -5,7 +5,12 @@ _base_ = '../cascade_rcnn/cascade_rcnn_r50_fpn_1x_coco.py'
 model = dict(
     roi_head=dict(
         bbox_head=[
-            dict(num_classes=1,
+            dict(
+                type='Shared2FCBBoxHead',
+                in_channels=256,
+                fc_out_channels=1024,
+                roi_feat_size=7,
+                num_classes=1,
                 bbox_coder=dict(
                     type='DeltaXYWHBBoxCoder',
                     target_means=[0., 0., 0., 0.],
@@ -54,7 +59,7 @@ model = dict(
 
 # Modify dataset related settings
 dataset_type = 'COCODataset'
-classes = ('person')
+classes = 'person'
 data = dict(
     train=dict(
         img_prefix='configs/cctv/train/',
