@@ -3,8 +3,8 @@ _base_ = '../cascade_rcnn/cascade_rcnn_r50_fpn_1x_coco.py'
 
 # We also need to change the num_classes in head to match the dataset's annotation
 
-# We only want to find people (person class)
-number_of_classes = 1
+# We only want to find people (person class), but the background has a class too..
+number_of_classes = 2
 
 model = dict(
     roi_head=dict(
@@ -63,8 +63,9 @@ model = dict(
 
 # Modify dataset related settings
 dataset_type = 'CocoDataset'
-classes = ['person']
+classes = ('person',)
 
+# Similar to COCO data setup
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 
 train_pipeline = [
