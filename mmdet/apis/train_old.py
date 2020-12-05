@@ -83,18 +83,7 @@ def train_detector(model,
             model.cuda(cfg.gpu_ids[0]), device_ids=cfg.gpu_ids)
 
     # build runner
-    # optimizer = build_optimizer(model, cfg.optimizer)
-    parameters = []
-    for name, p in model.named_parameters():
-        if "BBox" in name:
-            parameters.append(p)
-
-    optimizer = torch.optim.SGD(
-        parameters, lr=cfg.optimizer['lr'], momentum=cfg.optimizer['momentum'],
-        weight_decay=cfg.optimizer['weight_decay']
-    )
-
-
+    optimizer = build_optimizer(model, cfg.optimizer)
     runner = EpochBasedRunner(
         model,
         optimizer=optimizer,
