@@ -87,9 +87,9 @@ def train_detector(model,
 
     parameters = []
     for name, p in model.named_parameters():
-        # if "bar_" in name:
-        #     parameters.append(p)
-        print("Parameter name:" + name)
+        if "bbox_head" in name:
+            parameters.append(p)
+            print("Parameter name:" + name)
 
     optimizer = torch.optim.SGD(
         parameters, lr=cfg.optimizer['lr'], momentum=cfg.optimizer['momentum'],
