@@ -74,8 +74,7 @@ class FPN(nn.Module):
                  conv_cfg=None,
                  norm_cfg=None,
                  act_cfg=None,
-                 upsample_cfg=dict(mode='nearest'),
-                 freeze = False):
+                 upsample_cfg=dict(mode='nearest')):
         super(FPN, self).__init__()
         assert isinstance(in_channels, list)
         self.in_channels = in_channels
@@ -86,9 +85,6 @@ class FPN(nn.Module):
         self.no_norm_on_lateral = no_norm_on_lateral
         self.fp16_enabled = False
         self.upsample_cfg = upsample_cfg.copy()
-        self.freeze = freeze
-
-        self._freeze_stages()
 
         if end_level == -1:
             self.backbone_end_level = self.num_ins
@@ -157,12 +153,6 @@ class FPN(nn.Module):
                     act_cfg=act_cfg,
                     inplace=False)
                 self.fpn_convs.append(extra_fpn_conv)
-
-    def _freeze_stages(self):
-        if self.freeze:
-            for m in [self.lateral_convs, self.fpn_convs]:
-                for param in m.parameters():
-                    param.requires_grad = False
 
     # default init_weights for conv(msra) and norm in ConvModule
     def init_weights(self):
