@@ -86,6 +86,7 @@ def train_detector(model,
     # optimizer = build_optimizer(model, cfg.optimizer)
     parameters = []
     for name, p in model.named_parameters():
+        print('Parameter name: ' + name)
         if "BBox" in name:
             parameters.append(p)
 
