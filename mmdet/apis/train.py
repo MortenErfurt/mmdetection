@@ -87,7 +87,7 @@ def train_detector(model,
 
     parameters = []
     for name, p in model.named_parameters():
-        if "bbox_head" in name:
+        if "fc_cls" in name:
             parameters.append(p)
             print("Parameter name:" + name)
 
