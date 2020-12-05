@@ -1,5 +1,4 @@
 # The new config inherits a base config to highlight the necessary modification
-from torch import optim
 
 _base_ = '../cascade_rcnn/cascade_rcnn_r50_fpn_1x_coco.py'
 
