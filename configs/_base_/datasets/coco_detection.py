@@ -42,7 +42,7 @@ data = dict(
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + '../../configs/cctv/test/annotation_coco.json',
-        img_prefix=data_root + '../../configs/cctv/test/',
+        ann_file='configs/cctv/test/annotation_coco.json',
+        img_prefix='configs/cctv/test/',
         pipeline=test_pipeline))
 evaluation = dict(interval=1, metric='bbox')
